@@ -7,7 +7,7 @@ import pandas as pd
 from dotenv import load_dotenv
 
 
-env_path = os.path.join(os.path.dirname(__file__), "..", ".env")
+env_path = os.path.join(os.path.dirname(__file__), "..", "..", ".env")
 load_dotenv(env_path)
 
 
@@ -160,7 +160,7 @@ def clean_culture_event_data(df: pd.DataFrame) -> pd.DataFrame:
 # ==================================================
 
 # 오늘 날짜 기반 폴더 생성 (API 제공 데이터 매일 1회 업데이트)
-def mkdir_today(base_dir: str = "../data") -> str:
+def mkdir_today(base_dir: str = "data") -> str:
     today = datetime.datetime.now().strftime("%Y%m%d")
     save_dir = os.path.join(base_dir, f"data_{today}")
     os.makedirs(save_dir, exist_ok=True)
