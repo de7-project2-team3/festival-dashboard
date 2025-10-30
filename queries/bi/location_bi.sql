@@ -1,9 +1,14 @@
-CREATE OR REPLACE VIEW public.location_view AS (
+DROP VIEW IF EXISTS public.location_view;
+CREATE VIEW public.location_view AS (
 SELECT 
     f.event_id,
     f.event_name,
     dc.category,
-    dp.pay_type
+    dp.pay_type,
+    dl.place_name,
+    dl.area,
+    dl.longitude,
+    dl.latitude
 FROM public.fact_event f
 LEFT JOIN public.dim_category dc ON f.category_key = dc.category_key
 LEFT JOIN public.dim_payment dp ON f.payment_key = dp.payment_key
