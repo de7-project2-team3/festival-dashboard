@@ -1,63 +1,9 @@
-# services:
-#   # 최초 1회 초기화(마이그레이션 + admin 멱등 처리 + init)
-#   superset-init:
-#     image: apache/superset:4.1.2
-#     container_name: superset-init
-#     # env_file: ../../.env
-#     environment:
-#       SUPERSET_ENV: production
-#       SUPERSET_LOAD_EXAMPLES: "no"
-#       # SUPERSET_SECRET_KEY: ${SUPERSET_SECRET_KEY}
-#       SUPERSET_SECRET_KEY: "use-a-long-random-string-here-CHANGE-ME"
-#       ADMIN_USERNAME: admin
-#       ADMIN_PASSWORD: admin
-#       ADMIN_EMAIL: admin@example.com
-#     volumes:
-#       - superset_home:/app/superset_home
-#     command: >
-#       /bin/sh -c "
-#         superset db upgrade &&
-#         ( superset fab reset-password --username \"$ADMIN_USERNAME\" --password \"$ADMIN_PASSWORD\" ||
-#           superset fab create-admin --username \"$ADMIN_USERNAME\" --firstname Admin --lastname User --email \"$ADMIN_EMAIL\" --password \"$ADMIN_PASSWORD\" ) &&
-#         superset init
-#       "
-#     restart: "no"
-
-#   # 실제 웹 서비스 컨테이너 (SQLite 메타데이터 사용)
-#   superset:
-#     image: apache/superset:4.1.2
-#     container_name: superset
-#     depends_on:
-#       superset-init:
-#         condition: service_completed_successfully
-#     env_file: ../../.env
-#     environment:
-#       SUPERSET_ENV: production
-#       SUPERSET_LOAD_EXAMPLES: "no"
-#       SUPERSET_SECRET_KEY: "use-a-long-random-string-here-CHANGE-ME"
-#       # SUPERSET_SECRET_KEY: ${SUPERSET_SECRET_KEY}
-#       # gevent 이슈 회피: gunicorn 스레드 워커 사용
-#       GUNICORN_CMD_ARGS: "--workers 2 --threads 20 --timeout 120 -b 0.0.0.0:8088"
-#     volumes:
-#       - superset_home:/app/superset_home
-#     ports:
-#       - "8088:8088"
-#     command: ["/app/docker/docker-bootstrap.sh","app"]
-#     healthcheck:
-#       test: ["CMD", "curl", "-f", "http://localhost:8088/health"]
-#       interval: 30s
-#       timeout: 10s
-#       retries: 5
-#       start_period: 40s
-
-# volumes:
-#   superset_home:
-
-
 services:
   superset:
     image: apache/superset:4.1.2
     container_name: superset
+    env_file:
+      - ../../.env
     ports:
       - "8088:8088"
     environment:
