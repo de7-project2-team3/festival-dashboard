@@ -52,6 +52,9 @@ E --> F[Superset 시각화]
 >다양한 속성(날짜, 장소, 카테고리)을 자유롭게 조합해 분석할 수 있습니다.
 >즉, 데이터 관리 중심이 아닌 분석 중심 구조로,
 >확장성과 조회 성능이 뛰어납니다.
+<p align="center">
+    <img src="./docs/images/erd.png" width="600" alt="대시보드 미리보기">
+</p>
 
 ## 📂 프로젝트 구조
 
@@ -81,7 +84,18 @@ AWS 관련 자격 증명 정보(ACCESS_KEY, SECRET_KEY, BUCKET_NAME 등)는
 ## 📈 시각화 결과 (Superset)
 
 Superset을 통해 시기별·지역별 문화행사 참여 현황을 시각화한 대시보드입니다.
-
+<p align="center">
+    <img src="./docs/images/0.전체대시보드목록.png" width="45%" alt="대시보드 미리보기">
+    <img src="./docs/images/1.현황요약.png" width="45%" alt="대시보드 미리보기">
+</p>
+<p align="center">
+    <img src="./docs/images/2.자치구별분석.png" width="45%" alt="대시보드 미리보기">
+    <img src="./docs/images/3.유형별분석.png" width="45%" alt="대시보드 미리보기">
+</p>
+<p align="center">
+    <img src="./docs/images/4.시기별분석.png" width="45%" alt="대시보드 미리보기">
+    <img src="./docs/images/5.지도.png" width="45%" alt="대시보드 미리보기">
+</p>
 
 ## how to use uv
 
@@ -113,4 +127,5 @@ make superset-reset	# Superset 환경 완전 초기화 (볼륨 삭제 포함)
 
 ### .env
 계정 정보 및 기타 민감한 설정 값은 .env 파일의 환경 변수로 관리할려고 합니다.
+
 
